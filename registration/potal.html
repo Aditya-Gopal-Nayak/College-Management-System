@@ -1,0 +1,462 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institute of Technical Education and Research</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(88deg, rgba(32, 201, 255, 1) 36.7%, rgba(0, 8, 187, 1) 84.4%, rgba(255, 255, 255, 1) 119.7%);
+            color: white;
+        }
+
+        .animated-message {
+            background: #000080;
+            color: #fff;
+            text-align: center;
+            padding: 12px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .animated-message span {
+            display: inline-block;
+            animation: scroll-left 10s linear infinite;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+
+        .sidebar {
+            height: 100%;
+            width: 260px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: #1A237E;
+            overflow-x: hidden;
+            transition: 0.3s;
+            z-index: 1001;
+            padding-top: 20px;
+        }
+
+        .sidebar a, .sidebar .dropdown-btn {
+            padding: 7px;
+            text-decoration: none;
+            
+            display: block;
+            text-align: left;
+            cursor: pointer;
+        }
+        .sidebar a{
+            color: white;
+            font-size: 20px;
+            padding: 15px;
+        }
+        .sidebar .dropdown-btn{
+            font-size: 24px;
+            color: white;
+        }
+        .dropdown-btn{
+            background-color: #3E50B4;
+            width: 20rem;
+            border: none;
+            height: 60px;
+        }
+
+        .sidebar a:hover, .dropdown-btn:hover {
+            background-color: #3E50B4;
+        }
+
+        .dropdown-container {
+            display: none;
+            background-color: #3949AB;
+        }
+
+        .menu-icon {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            font-size: 25px;
+            color: white;
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 25px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .content {
+            margin-top: 60px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-left: 180px;
+            width: 90%;
+        }
+        .drop{
+            margin-top: 50px;
+        }
+        .profile-header {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-left: 200px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 5px solid #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+background-image:url("profile.jpg")
+        }
+
+        .profile-header h2 {
+            font-weight: bold;
+        }
+
+        .profile-header p {
+            font-size: 16px;
+            margin-top: -5px;
+        }
+        b, strong {
+    font-weight: bolder;
+    color: black;
+}
+
+        .details-section {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            margin-left: 200px;
+        }
+
+        .details-section h4 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .para {
+            background-color: #e9f7ff;
+            padding: 10px 15px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #343a40;
+        }
+
+        .details-row {
+            margin-bottom: 15px;
+        }
+
+        .time{
+            margin-left: 230px;
+        }
+
+        table {
+            margin-top: 20px;
+        }
+        th, td {
+            text-align: center;
+            vertical-align: middle;
+            
+        }
+        th {
+            background-color: #f1f1f1;
+        }
+        td {
+            background-color: #e9ecef;
+        }
+        tr, td {
+            background-color: #f8f9fa;
+        }
+       .table1{
+        margin-left: 230px;
+       }
+
+
+    </style>
+</head>
+<body>
+    
+    <div class="animated-message">
+        <h2>Welcome Student</h2>
+    </div>
+
+    <div class="menu-icon" onclick="openNav()">&#9776;</div>
+
+    <div id="sidebar" class="sidebar">
+        <a class="closebtn" onclick="closeNav()">&times;</a>
+        <button class="dropdown-btn drop">Personal Info.</button>
+        <div class="dropdown-container">
+            <a class="Personal">Student Personal Info</a>
+        </div>
+        <button class="dropdown-btn">Academic Info.</button>
+        <div class="dropdown-container">
+            <a href="#" class="timetable">Class Time Table</a>
+            <a href="#" class="attendance">Class Attendance</a>
+            <a href="#">Registered Subjects</a>
+        </div>
+        <button class="dropdown-btn">Exam Info.</button>
+        <div class="dropdown-container">
+            <a href="#">Student Result</a>
+        </div>
+    </div>
+
+    <div class="content">
+<br>
+        <h1>WELCOME TO INSTITUTE OF TECHNICAL EDUCATION AND RESEARCH</h1>
+    </div>
+    <div class="container mt-5 details">
+        <div class="profile-header text-center">
+            <img src="https://via.placeholder.com/150" alt="Profile Photo" class="profile-photo">
+            <h2 id="student-name">XYZ STUDENT</h2>
+            <p id="student-details">Student ID: 123456 | Major: Computer Science</p>
+        </div>
+
+        <div class="details-section">
+            <h4>About Me</h4>
+            <div class="row">
+                <div class="col-md-6 details-row">
+                    <b>Academic Year:</b>
+                    <p class="para">2024-2025</p>
+                </div>
+                <div class="col-md-6 details-row">
+                    <b>Admission Year:</b>
+                    <p class="para">2023</p>
+                </div>
+                <div class="col-md-6 details-row">
+                    <b>Previous Academic Year:</b>
+                    <p class="para">2023-2024</p>
+                </div>
+                <div class="col-md-6 details-row">
+                    <b>Program:</b>
+                    <p class="para">B.Tech.</p>
+                </div>
+                <div class="col-md-6 details-row">
+                    <b>Current Semester:</b>
+                    <p class="para">3<sup>rd</sup></p>
+                </div>
+                <div class="col-md-6 details-row">
+                    <b>Date Of Birth:</b>
+                    <p class="para">15/04/2024</p>
+                </div>
+                <div class="col-md-6 details-row">
+                    <b>Gender:</b>
+                    <p class="para">Male</p>
+                </div>
+                <div class="col-md-6 details-row">
+                    <b>Father's Name:</b>
+                    <p class="para">XYZ</p>
+                </div>
+                <div class="col-md-6 details-row">
+                    <b>Mother's Name:</b>
+                    <p class="para">XYZ</p>
+                </div>
+                <div class="col-md-6 details-row">
+                    <b>Mobile No.:</b>
+                    <p class="para">1234567891</p>
+                </div>
+                <div class="col-md-6 details-row">
+                    <b>Class 10<sup>th</sup> Percentage:</b>
+                    <p class="para">89.0%</p>
+                </div>
+                <div class="col-md-6 details-row">
+                    <b>Class 12<sup>th</sup> Percentage:</b>
+                    <p class="para">85.0%</p>
+                </div>
+            </div>
+        </div>
+
+         
+    </div>
+
+    <div class="container mt-5 time">
+        <h2 class="text-center">Class Timetable</h2>
+         
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                </tr>
+            </thead>
+            <tbody>
+                 
+                <tr>
+                    <td>8:00 - 9:00 AM</td>
+                    <td>CSW1</td>
+                    <td>DLD</td>
+                    <td>CSW1</td>
+                    <td>AD1</td>
+                    <td>AD1</td>
+                </tr>
+                 
+                <tr>
+                    <td>9:00 - 10:00 AM</td>
+                    <td>PS</td>
+                    <td>CSW1</td>
+                    <td>CSW1</td>
+                    <td>AD1</td>
+                    <td>AD1</td>
+                </tr>
+                 
+                <tr>
+                    <td>10:00 - 11:00 AM</td>
+                    <td>PS</td>
+                    <td>DLD</td>
+                    <td>IES</td>
+                    <td>IM</td>
+                    <td>*</td>
+                </tr>
+                 
+                <tr>
+                    <td>11:00 - 12:00 PM</td>
+                    <td>IES</td>
+                    <td>PS</td>
+                    <td>DLD</td>
+                    <td>*</td>
+                    <td>IM</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container table-container table1">
+        <h2 class="text-center">Student Attendance Record</h2>
+        
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Sty No</th>
+              <th>Subject Code</th>
+              <th>Subject</th>
+              <th>Total Class</th>
+              <th>Attendance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>3</td>
+              <td>CSE2141</td>
+              <td>Computer Science Workshop 1</td>
+              <td>43/43</td>
+              <td class="attendance-good">100%</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>3</td>
+              <td>CSE3141</td>
+              <td>Algorithm Design 1</td>
+              <td>34/34</td>
+              <td class="attendance-good">100%</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>3</td>
+              <td>EET1211</td>
+              <td>Digital Logic Design</td>
+              <td>34/35</td>
+              <td class="attendance-average">97.14%</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>3</td>
+              <td>MTH2002</td>
+              <td>Probability Statistics</td>
+              <td>32/35</td>
+              <td class="attendance-average">91.42%</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>3</td>
+              <td>HSS2021</td>
+              <td>Principle of MacroEconomics</td>
+              <td>28/30</td>
+              <td class="attendance-poor">93.33%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    
+
+    <script>
+        function openNav() {
+            $("#sidebar").css("width", "250px");
+        }
+
+        function closeNav() {
+            $("#sidebar").css("width", "0");
+        }
+
+        $(document).ready(function () {
+            $(".dropdown-btn").on("click", function () {
+                $(this).next(".dropdown-container").slideToggle();
+            });
+            $(".details").hide(function(){
+                $(".Personal").click(function(){
+                    $(".time").hide();
+                    $(".table1").hide();
+                    $(".details").show();
+                })
+            })
+                $(".time").hide(function(){
+                $(".timetable").click(function(){
+                    $(".details").hide();
+                    $(".table1").hide();
+                    $(".time").show();
+                })
+                })
+                $(".table1").hide(function(){
+                $(".attendance").click(function(){
+                    $(".time").hide();
+                    $(".table1").show();
+                })
+                })
+            
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
